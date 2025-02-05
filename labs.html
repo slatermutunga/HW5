@@ -7,6 +7,16 @@
     <style>
         body {margin: 0;}
         main {padding: 20px;}
+
+        highlight-box {
+            display: block;
+            background-color: yellow;
+            padding: 10px;
+            font-weight: bold;
+            border-left: 4px solid rgb(0, 0, 0);
+            max-width: 300px;
+        }
+
     </style>
 
 </head>
@@ -180,6 +190,20 @@
   <video width="640" height="360" controls>
     <source src="Goodbye.mp4" type="video/mp4">
 </video>
+
+<p><highlight-box>Attention</highlight-box></p>
+
+<hello-world></hello-world>
+
+    <script>
+        class HelloWorld extends HTMLElement {
+            constructor() {
+                super();
+                console.log("Hello world!");
+            }
+        }
+        customElements.define("hello-world", HelloWorld);
+    </script>
 
 </main>
 
