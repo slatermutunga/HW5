@@ -12,9 +12,6 @@
 
 </head>
 <body class = "fade-in">
-    <button id="theme-toggle" aria-label="Toggle theme">
-        <span id="theme-icon">🌙</span> <!-- Default to dark mode icon -->
-    </button>
 <div>
     <header>
         <h1><i>Contact Me</i></h1>
@@ -26,18 +23,17 @@
         <form id="contact-form" action="https://httpbin.org/post" method="post">
             <fieldset>
                 <legend>Leave Your Message</legend>
-
+                
                 <label for="name">Name: <span class="required">*</span></label><br/>
-                <input type="text" id="name" name="name" maxlength="50" pattern="[A-Za-z\s]+"><br/><br/>
+                <input type="text" id="name" name="name" required maxlength="50" pattern="[A-Za-z\s]+"><br/><br/>
 
                 <label for="email">Email: </label><br/>
                 <input type="email" id="email" name="email" maxlength="100"><br/><br/>
                 
                 <label for="comments">Comments: <span class="required">*</span></label><br/>
-                <textarea id="comments" name="comments" rows="5" cols="33"  maxlength="500"></textarea><br/><br/>
+                <textarea id="comments" name="comments" rows="5" cols="33" maxlength="500"></textarea><br/><br/>
 
                 <input type="hidden" id="possible_bot" name="possible_bot" value="true">
-                <input type="hidden" id="form-errors" name="form-errors">
                 
                 <div class="form-example">
                     <input type="submit" value="Send!">
@@ -60,8 +56,5 @@
     <footer>
         <p><b>&copy; 2023 My Personal Site. All rights reserved.</b></p>
     </footer>
-
-<script src="script.js"></script>
-
 </body>
 </html>
