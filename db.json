@@ -8,7 +8,7 @@
         "alt": "CenkVsPhil Image",
         "description": "Cenk vs Dr.Phil Debate On I/P",
         "link": "https://www.youtube.com/watch?v=FG9qBMoYGPk",
-        "linkText": "View Video"
+        "link-text": "View Video"
     },
     {
         "title": "Mearhsheimer Vs Journalist",
@@ -18,7 +18,7 @@
         "alt": "Mearsheimer Video",
         "description": "Mearsheimer Vs Polish Journalist Debate On I/P.",
         "link": "https://www.youtube.com/watch?v=K9n6MDVl98c",
-        "linkText": "View Video"
+        "link-text": "View Video"
     },
     {
         "title": "Myron Vs Rabbi Shmuley",
@@ -28,7 +28,7 @@
         "alt": "Myron Video",
         "description": "Myron vs Rabbi Shmuley On Kanye West.",
         "link": "https://www.youtube.com/watch?v=88QOkVk2XZw",
-        "linkText": "View Video"
+        "link-text": "View Video"
     }
     ]
 }
