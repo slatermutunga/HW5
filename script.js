@@ -42,10 +42,7 @@ localStorage.setItem('projects', JSON.stringify(localData));
 class ProjectCard extends HTMLElement {
     constructor() {
         super();
-        // Create a shadow root
         this.attachShadow({ mode: 'open' });
-
-        // Define the HTML structure of the card
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -109,7 +106,6 @@ class ProjectCard extends HTMLElement {
     }
 }
 
-// Define the custom element
 customElements.define('project-card', ProjectCard);
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -118,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadRemoteButton = document.querySelector('#load-remote');
 
     function populateCards(projects) {
-        container.innerHTML = ''; // Clear existing cards
+        container.innerHTML = ''; 
         projects.forEach(project => {
             const card = document.createElement('project-card');
             card.setAttribute('title', project.title);
@@ -133,13 +129,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Load data from localStorage
     loadLocalButton.addEventListener('click', () => {
         const localData = JSON.parse(localStorage.getItem('projects')) || [];
         populateCards(localData);
     });
 
-    // Load data from remote server
     loadRemoteButton.addEventListener('click', () => {
         fetch('https://my-json-server.typicode.com/slatermutunga/HW5/projects')
             .then(response => response.json())

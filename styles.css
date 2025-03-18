@@ -229,3 +229,27 @@ li img {
     background: var(--button-background);
     color: var(--button-text-color);
 }
+
+nav ul {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+}
+
+
+nav ul li {
+    display: inline-block;
+    margin-right: 15px; 
+}
+
+
+nav ul li a {
+    text-decoration: none; 
+    color: var(--secondary-color); 
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline; 
+    color: #0056b3; 
+}
