@@ -3,6 +3,42 @@ const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
 const body = document.body;
 
+const localData = [
+    {
+        "title": "Cenk Vs Dr.Phil",
+        "image-large": "CenkvsPhil-large.png",
+        "image-medium": "CenkvsPhil-medium.png",
+        "image-small": "CenkvsPhil-small.png",
+        "alt": "CenkVsPhil Image",
+        "description": "Cenk vs Dr.Phil Debate On I/P",
+        "link": "https://www.youtube.com/watch?v=FG9qBMoYGPk",
+        "link-text": "View Video"
+    },
+    {
+        "title": "Mearhsheimer Vs Journalist",
+        "image-large": "Mearsheimer-Large.png",
+        "image-medium": "Mearsheimer-Medium.png",
+        "image-small": "Mearsheimer-Small.png",
+        "alt": "Mearsheimer Video",
+        "description": "Mearsheimer Vs Polish Journalist Debate On I/P.",
+        "link": "https://www.youtube.com/watch?v=K9n6MDVl98c",
+        "link-text": "View Video"
+    },
+    {
+        "title": "Myron Vs Rabbi Shmuley",
+        "image-large": "Myron-large.png",
+        "image-medium": "Myron-medium.png",
+        "image-small": "Myron-small.png",
+        "alt": "Myron Video",
+        "description": "Myron vs Rabbi Shmuley On Kanye West.",
+        "link": "https://www.youtube.com/watch?v=88QOkVk2XZw",
+        "link-text": "View Video"
+    }
+];
+
+localStorage.setItem('projects', JSON.stringify(localData));
+
+
 class ProjectCard extends HTMLElement {
     constructor() {
         super();
@@ -78,24 +114,38 @@ customElements.define('project-card', ProjectCard);
 
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.card-container');
+    const loadLocalButton = document.querySelector('#load-local');
+    const loadRemoteButton = document.querySelector('#load-remote');
 
-    fetch('projects.json')
-        .then(response => response.json())
-        .then(projects => {
-            projects.forEach(project => {
-                const card = document.createElement('project-card');
-                card.setAttribute('title', project.title);
-                card.setAttribute('image-large', project['image-large']);  // For large screens
-                card.setAttribute('image-medium', project['image-medium']);  // For medium screens
-                card.setAttribute('image-small', project['image-small']);  // For small screens or fallback
-                card.setAttribute('alt', project.alt);
-                card.setAttribute('description', project.description);
-                card.setAttribute('link', project.link);
-                card.setAttribute('link-text', project.linkText);
-                container.appendChild(card);
-            });
-        })
-        .catch(error => console.error('Error fetching projects:', error));
+    function populateCards(projects) {
+        container.innerHTML = ''; // Clear existing cards
+        projects.forEach(project => {
+            const card = document.createElement('project-card');
+            card.setAttribute('title', project.title);
+            card.setAttribute('image-large', project['image-large']);
+            card.setAttribute('image-medium', project['image-medium']);
+            card.setAttribute('image-small', project['image-small']);
+            card.setAttribute('alt', project.alt);
+            card.setAttribute('description', project.description);
+            card.setAttribute('link', project.link);
+            card.setAttribute('link-text', project['link-text']);
+            container.appendChild(card);
+        });
+    }
+
+    // Load data from localStorage
+    loadLocalButton.addEventListener('click', () => {
+        const localData = JSON.parse(localStorage.getItem('projects')) || [];
+        populateCards(localData);
+    });
+
+    // Load data from remote server
+    loadRemoteButton.addEventListener('click', () => {
+        fetch('https://my-json-server.typicode.com/slatermutunga/HW5/projects')
+            .then(response => response.json())
+            .then(data => populateCards(data))
+            .catch(error => console.error('Error fetching remote data:', error));
+    });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
