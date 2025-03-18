@@ -3,6 +3,100 @@ const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
 const body = document.body;
 
+class ProjectCard extends HTMLElement {
+    constructor() {
+        super();
+        // Create a shadow root
+        this.attachShadow({ mode: 'open' });
+
+        // Define the HTML structure of the card
+        this.shadowRoot.innerHTML = `
+            <style>
+                :host {
+                    display: block;
+                    margin: 10px;
+                    padding: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    background-color: var(--card-bg-color, #fff);
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+                h2 {
+                    color: var(--card-title-color, #333);
+                    margin-top: 0;
+                }
+                picture {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    border-radius:4px;
+                }
+                img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 4px;
+                }
+                p {
+                    color: var(--card-text-color, #666);
+                }
+                a {
+                    color: var(--card-link-color, #007BFF);
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            <h2></h2>
+            <picture>
+                <source srcset="" media="(min-width: 768px)">
+                <source srcset="" media="(min-width: 480px)">
+                <img src="" alt="">
+            </picture>
+            <p></p>
+            <a href="">Read more</a>
+        `;
+    }
+
+    connectedCallback() {
+        this.shadowRoot.querySelector('h2').textContent = this.getAttribute('title') || 'Project Title';
+        
+        const pictureElement = this.shadowRoot.querySelector('picture');
+        pictureElement.querySelector('source[media="(min-width: 768px)"]').srcset = this.getAttribute('image-large') || 'default-large.jpg';
+        pictureElement.querySelector('source[media="(min-width: 480px)"]').srcset = this.getAttribute('image-medium') || 'default-medium.jpg';
+        pictureElement.querySelector('img').src = this.getAttribute('image-small') || 'default-small.jpg';
+        pictureElement.querySelector('img').alt = this.getAttribute('alt') || 'Project Image';
+
+        this.shadowRoot.querySelector('p').textContent = this.getAttribute('description') || 'Project description goes here.';
+        this.shadowRoot.querySelector('a').href = this.getAttribute('link') || '#';
+        this.shadowRoot.querySelector('a').textContent = this.getAttribute('link-text') || 'Read more';
+    }
+}
+
+// Define the custom element
+customElements.define('project-card', ProjectCard);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.card-container');
+
+    fetch('projects.json')
+        .then(response => response.json())
+        .then(projects => {
+            projects.forEach(project => {
+                const card = document.createElement('project-card');
+                card.setAttribute('title', project.title);
+                card.setAttribute('image-large', project['image-large']);  // For large screens
+                card.setAttribute('image-medium', project['image-medium']);  // For medium screens
+                card.setAttribute('image-small', project['image-small']);  // For small screens or fallback
+                card.setAttribute('alt', project.alt);
+                card.setAttribute('description', project.description);
+                card.setAttribute('link', project.link);
+                card.setAttribute('link-text', project.linkText);
+                container.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error fetching projects:', error));
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("theme-toggle");
@@ -163,3 +257,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     if (contactForm) contactForm.addEventListener("submit", handleSubmit);
 });
+

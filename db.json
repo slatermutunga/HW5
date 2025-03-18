@@ -1,0 +1,34 @@
+{
+    "projects": [
+    {
+        "title": "Cenk Vs Dr.Phil",
+        "image-large": "CenkvsPhil-large.png",
+        "image-medium": "CenkvsPhil-medium.png",
+        "image-small": "CenkvsPhil-small.png",
+        "alt": "CenkVsPhil Image",
+        "description": "Cenk vs Dr.Phil Debate On I/P",
+        "link": "https://www.youtube.com/watch?v=FG9qBMoYGPk",
+        "linkText": "View Video"
+    },
+    {
+        "title": "Mearhsheimer Vs Journalist",
+        "image-large": "Mearsheimer-Large.png",
+        "image-medium": "Mearsheimer-Medium.png",
+        "image-small": "Mearsheimer-Small.png",
+        "alt": "Mearsheimer Video",
+        "description": "Mearsheimer Vs Polish Journalist Debate On I/P.",
+        "link": "https://www.youtube.com/watch?v=K9n6MDVl98c",
+        "linkText": "View Video"
+    },
+    {
+        "title": "Myron Vs Rabbi Shmuley",
+        "image-large": "Myron-large.png",
+        "image-medium": "Myron-medium.png",
+        "image-small": "Myron-small.png",
+        "alt": "Myron Video",
+        "description": "Myron vs Rabbi Shmuley On Kanye West.",
+        "link": "https://www.youtube.com/watch?v=88QOkVk2XZw",
+        "linkText": "View Video"
+    }
+    ]
+}
